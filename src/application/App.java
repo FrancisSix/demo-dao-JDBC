@@ -5,6 +5,8 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class App {
@@ -12,10 +14,13 @@ public class App {
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
-        List<Seller> sellerList = sellerDao.findAll();
+        Seller seller = sellerDao.findById(1);
+        System.out.println(seller);
 
-        for (Seller x : sellerList) {
-            System.out.println(x);
-        }
+        seller.setName("Bob Grey");
+        seller.setDepartment(new Department(2, null));
+        sellerDao.update(seller);
+
+        System.out.println(seller);
     }
 }
