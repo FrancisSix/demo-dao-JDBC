@@ -5,13 +5,17 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
+import java.util.List;
+
 public class App {
     public static void main(String[] args) {
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
-        Seller seller = sellerDao.findById(3);
+        List<Seller> sellerList = sellerDao.findAll();
 
-        System.out.println(seller);
+        for (Seller x : sellerList) {
+            System.out.println(x);
+        }
     }
 }
