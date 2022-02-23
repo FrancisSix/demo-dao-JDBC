@@ -1,26 +1,23 @@
 package application;
 
 import model.dao.DaoFactory;
-import model.dao.SellerDao;
+import model.dao.DepartmentDao;
 import model.entities.Department;
-import model.entities.Seller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class App {
     public static void main(String[] args) {
 
-        SellerDao sellerDao = DaoFactory.createSellerDao();
+        DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+        departmentDao.findAll();
 
-        Seller seller = sellerDao.findById(1);
-        System.out.println(seller);
+        List<Department> departments = departmentDao.findAll();
 
-        seller.setName("Bob Grey");
-        seller.setDepartment(new Department(2, null));
-        sellerDao.update(seller);
-
-        System.out.println(seller);
+        for (Department x : departments){
+            System.out.println(x);
+        }
     }
 }
